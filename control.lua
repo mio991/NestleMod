@@ -21,7 +21,7 @@ end
 function update()
   LOGGER.log("Update!")
 
-  global.satisfaction = global.satisfaction - settings.global["satisfaction-reduction"].value
+  global.satisfaction = global.satisfaction - settings.global["satisfaction-reduction"].value * game.forces["enemy"].evolution_factor
 
   LOGGER.log("Satisfaction: " .. global.satisfaction)
 
