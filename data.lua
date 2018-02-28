@@ -72,7 +72,6 @@ data:extend(
   {
     type = "container",
     name = "mall",
-    --fast_replaceable_group = "container",
     inventory_size = 2,
     icon = "__base__/graphics/icons/market.png",
     icon_size = 32,
