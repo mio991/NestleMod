@@ -44,7 +44,6 @@ function update()
           j=j*2
         end
         local enemy = enemys[1]
-        LOGGER.log(enemy.name)
         if enemy ~= nil then
           LOGGER.log("Enemy found!")
           enemy.set_command({type=defines.command.go_to_location, destination=malls[i].position, distraction=defines.distraction.by_damage})
