@@ -3,7 +3,7 @@ data:extend(
   {
     type = "technology",
     name = "alien-culture",
-    icon_size = 128,
+    icon_size = 32,
     icon = "__base__/graphics/icons/market.png",
     effects =
     {
