@@ -26,6 +26,7 @@ function update()
   LOGGER.log("Satisfaction: " .. global.satisfaction)
 
   game.forces["enemy"].set_cease_fire(game.forces["player"], global.satisfaction > 0)
+  game.forces["player"].set_cease_fire(game.forces["enemy"], global.satisfaction > 0)
 
   if global.satisfaction < settings.global["satisfaction-threshold"].value then
     local surface = game.surfaces["nauvis"]
@@ -35,7 +36,15 @@ function update()
     for i = 1, #malls, 1 do
       if global.customers[malls[i]] == nil then
         LOGGER.log("Init pick up!")
-        local enemy = surface.find_nearest_enemy{position = malls[i].position, max_distance = 50000}
+        local enemys = {}
+        local j = 10
+        while #enemys == 0 do
+          local a = {pos.subtract(malls[i].position, {j,j}), pos.add(malls[i].position, {j,j})}
+          enemys = surface.find_entities_filtered{area=a, type = "unit", force="enemy", limit=1}
+          j=j*2
+        end
+        local enemy = enemys[1]
+        LOGGER.log(enemy.name)
         if enemy ~= nil then
           LOGGER.log("Enemy found!")
           enemy.set_command({type=defines.command.go_to_location, destination=malls[i].position, distraction=defines.distraction.by_damage})
