@@ -21,13 +21,13 @@ end
 function update()
   LOGGER.log("Update!")
 
-  global.satisfaction = global.satisfaction - settings.global["satisfaction-reduction"]
+  global.satisfaction = global.satisfaction - settings.global["satisfaction-reduction"].value
 
   LOGGER.log("Satisfaction: " .. global.satisfaction)
 
   game.forces["enemy"].set_cease_fire(game.forces["player"], global.satisfaction > 0)
 
-  if global.satisfaction < settings.global["satisfaction-threshold"] then
+  if global.satisfaction < settings.global["satisfaction-threshold"].value then
     local surface = game.surfaces["nauvis"]
 
     local malls = surface.find_entities_filtered{name="mall"}
@@ -53,7 +53,7 @@ function update()
         customer.set_command({type=defines.command.go_to_location, destination=customer.spawner.position, distraction=defines.distraction.by_damage})
         local inv = malls[i].get_inventory(defines.inventory.chest)
         local taken = inv.remove({name="consumer-goods", count=5})
-        global.satisfaction = global.satisfaction + taken * settings.global["satisfaction-increase"]
+        global.satisfaction = global.satisfaction + taken * settings.global["satisfaction-increase"].value
         global.satisfied[customer] = 5
       end
       if global.satisfied[customer] and (global.satisfied[customer] > 0) then
