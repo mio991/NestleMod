@@ -4,7 +4,7 @@ data:extend(
     type = "technology",
     name = "alien-culture",
     icon_size = 128,
-    icon = "__base__/graphics/technology/steel-processing.png",
+    icon = "__base__/graphics/icons/market.png",
     effects =
     {
       {
@@ -18,9 +18,9 @@ data:extend(
     },
     unit =
     {
-      count = 10,
-      ingredients = {{"science-pack-1", 1}},
-      time = 5
+      count = 30,
+      ingredients = {{"science-pack-1", 1},{"science-pack-2", 1}},
+      time = 10
     }
   },
   {
